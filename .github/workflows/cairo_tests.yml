@@ -39,5 +39,5 @@ jobs:
       - name: Build Cairo Contracts
         run: scarb build
 
-      - name: Run Cairo Tests
+      - name: Run Cairo Test
         run: snforge test
