@@ -1,21 +1,18 @@
-
-version: '3.8'
-
 networks:
   app_network:
     driver: bridge
 
 services:
   backend:
-    build: 
-      context: ..
+    build:
+      context: ../spotnet
       dockerfile: Dockerfile.windows
     command: ["/bin/bash", "-c", "chmod +x /app/entrypoint.sh && /app/entrypoint.sh"]
     container_name: backend_dev
     volumes:
-      - ..:/app
+      - ../spotnet:/app
     env_file:
-      - ../.env.dev
+      - ../spotnet/.env.dev
     ports:
       - "8000:8000"
     networks:
@@ -51,11 +48,11 @@ services:
 
   frontend:
     build:
-      context: ../frontend
+      context: ../spotnet/frontend
       dockerfile: Dockerfile.dev
     container_name: frontend_dev
     volumes:
-      - ../frontend:/app
+      - ../spotnet/frontend:/app
     ports:
       - "3000:80"
     networks:

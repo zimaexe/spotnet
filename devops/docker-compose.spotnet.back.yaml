@@ -1,19 +1,17 @@
-version: '3.8'
-
 networks:
   app_network:
     driver: bridge
 
 services:
   backend:
-    build: ..
+    build: ../spotnet
     command: bash /app/entrypoint.sh
     container_name: backend_dev
     volumes:
-      - ../entrypoint.sh:/app/entrypoint.sh
-      - ..:/app
+      - ../spotnet/entrypoint.sh:/app/entrypoint.sh
+      - ../spotnet/:/app
     env_file:
-      - ../.env.dev
+      - ../spotnet/.env.dev
     expose:
       - "8000"
     ports:
